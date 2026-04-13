@@ -11,3 +11,5 @@ Proyecto para controlar el PC sin tocarlo, usando gestos y código Morse.
 ### El reto:
 
 Implementar y entrenar mi propia IA para que reconozca los gestos sin depender de APIs externas de texto. Resolver un problema que no existe de la manera más interesante posible.
+
+To activate venv .\venv\Scripts\Activate.ps1
