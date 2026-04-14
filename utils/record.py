@@ -13,10 +13,33 @@ if os.path.exists('gestos_dataset.pkl'):
 else:
     print("✓ Creating new dataset...")
     gestures = {
-        "click": [],
-        "fist": [],
-        "signal": [],
-        "open_hand": [],
+        "a": [],
+        "b": [],
+        "c": [],
+        "d": [],
+        "e": [],
+        "f": [],
+        "g": [],
+        "h": [],
+        "i": [],
+        "j": [],
+        "k": [],
+        "l": [],
+        "m": [],
+        "n": [],
+        "ñ": [],
+        "o": [],
+        "p": [],
+        "q": [],
+        "r": [],
+        "s": [],
+        "t": [],
+        "u": [],
+        "v": [],
+        "w": [],
+        "x": [],
+        "y": [],
+        "z": [],
     }
 
 recording = False
@@ -46,10 +69,11 @@ VisionRunningMode = mp.tasks.vision.RunningMode
 opciones = HandLandmarkerOptions(
     base_options=BaseOptions(model_asset_path='src/hand_landmarker.task'),
     running_mode=VisionRunningMode.IMAGE,
-    num_hands=1
+    num_hands=2
 )
 
 cap = cv2.VideoCapture(0)
+
 
 with HandLandmarker.create_from_options(opciones) as landmarker:
     while True:
@@ -65,12 +89,12 @@ with HandLandmarker.create_from_options(opciones) as landmarker:
         h, w, c = frame.shape
         frame_flipped = cv2.flip(frame, 1)
         if results.hand_landmarks:
+            
             for hand_landmarks in results.hand_landmarks:
-
                 for landmark in hand_landmarks:
                     x = int(landmark.x * w)
                     y = int(landmark.y * h)
-                    cv2.circle(frame, (x,y), 3, (0,255,0), -1)
+                    cv2.circle(frame, (x,y), 1, (0,255,0), -1)
 
                 if recording and currentGesture:
                     landmarks_data =[]
@@ -97,7 +121,7 @@ with HandLandmarker.create_from_options(opciones) as landmarker:
         
         if key == ord('r'):
             recording = True
-            currentGesture = "signal" 
+            currentGesture = "ñ" 
             print(f"\n✓ Starting recording: {currentGesture}")
         
         elif key == ord('s'):

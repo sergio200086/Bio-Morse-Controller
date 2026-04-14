@@ -22,7 +22,7 @@ VisionRunningMode = mp.tasks.vision.RunningMode
 opciones = HandLandmarkerOptions(
     base_options=BaseOptions(model_asset_path='src/hand_landmarker.task'),
     running_mode=VisionRunningMode.IMAGE,
-    num_hands=1
+    num_hands=2
 )
 
 cap = cv2.VideoCapture(0)
@@ -30,7 +30,7 @@ print("Starting controller, press q to exit.")
 
 
 last_action_time = 0
-action_cooldown = 0.5
+action_cooldown = 0.3
 
 screen_width, screen_height = pyautogui.size()
 print(f"Screen size: {screen_width}x{screen_height}")
@@ -52,7 +52,7 @@ with HandLandmarker.create_from_options(opciones) as landmarker:
                 for landmark in hand_landmarks:
                     x = int(landmark.x * w)
                     y = int(landmark.y * h)
-                    cv2.circle(frame, (x, y), 3, (0, 255, 0), -1)
+                    cv2.circle(frame, (x, y), 1, (0, 255, 0), -1)
             
                 landmarks_data = []
                 for landmark in hand_landmarks:
